@@ -7,39 +7,53 @@
 //
 
 #import "AppDelegate.h"
+#import <AFNetworking/AFNetworkReachabilityManager.h>
 
-@interface AppDelegate ()
+#define NoDataImageViewWidthAndHeight self.window.bounds.size.width/2
+
+@interface AppDelegate (){
+    UIImageView *noDataImageView;
+    AFNetworkReachabilityStatus _lastStatus;
+}
 
 @end
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    _lastStatus = AFNetworkReachabilityStatusUnknown;
+    [self networkReachability];
     return YES;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-}
+/**
+ *  监控网络操作
+ */
+- (void)networkReachability{
+    [[AFNetworkReachabilityManager sharedManager]setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        if (status == AFNetworkReachabilityStatusNotReachable) {
+//            NSLog(@"没网，更新没网状态下的UI");
+            if (noDataImageView == nil) {
+                noDataImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"noDataImage"]];
+                noDataImageView.frame = CGRectMake(0, 0, NoDataImageViewWidthAndHeight, NoDataImageViewWidthAndHeight);
+                noDataImageView.center = self.window.center;
+                [self.window addSubview:noDataImageView];
+            }
+        }else{
+//            NSLog(@"有网,状态%ld",(long)status);
+            if (noDataImageView != nil) {
+                [noDataImageView removeFromSuperview];
+                noDataImageView = nil;
+            }
+            if (_lastStatus == AFNetworkReachabilityStatusNotReachable) {
+//                NSLog(@"上一次没网");
+                [self.window showLabel:@"网络恢复 试试重新加载"];
+            }
+        }
+        _lastStatus = status;
+    }];
+    [[AFNetworkReachabilityManager sharedManager]startMonitoring];
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
 @end
