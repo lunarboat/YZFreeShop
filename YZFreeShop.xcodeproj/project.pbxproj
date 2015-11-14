@@ -443,7 +443,6 @@
 				3EA055DE1BE8924F00D410DD /* YZMainSearchData.m */,
 				3EA055E01BE8952300D410DD /* YZSearchData.h */,
 				3EA055E11BE8952300D410DD /* YZSearchData.m */,
-				3EFE3CC01BEADFF10036543B /* YZKindOfListData.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -490,8 +489,9 @@
 			isa = PBXGroup;
 			children = (
 				3EFE3D231BEC3BB50036543B /* SlideMenuConfigration */,
-				3EFE3D201BEC3BA40036543B /* YZPayViewController.h */,
 				3EFE3CBF1BEADFF10036543B /* YZKindOfListData.h */,
+				3EFE3CC01BEADFF10036543B /* YZKindOfListData.m */,
+				3EFE3D201BEC3BA40036543B /* YZPayViewController.h */,
 				3EFE3D211BEC3BA40036543B /* YZPayViewController.m */,
 				3EFE3D241BEC41050036543B /* YZEveryDayViewController.h */,
 				3EFE3D251BEC41050036543B /* YZEveryDayViewController.m */,
