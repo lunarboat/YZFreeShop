@@ -4,4 +4,4 @@
 ###基本上实现了所有的功能。
 ###截图
 --------
-![1jpg](/Users/lunarboat/Desktop/1.png)
+![1jpg](https://github.com/lunarboat/shotCut/blob/master/YZFreeShop/1.png)
