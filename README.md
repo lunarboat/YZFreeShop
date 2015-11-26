@@ -15,5 +15,6 @@
 ![9jpg](https://github.com/lunarboat/shotCut/blob/master/YZFreeShop/9.png)
 ![10jpg](https://github.com/lunarboat/shotCut/blob/master/YZFreeShop/10.png)
 ![11jpg](https://github.com/lunarboat/shotCut/blob/master/YZFreeShop/11.png)
+![12jpg](https://github.com/lunarboat/shotCut/blob/master/YZFreeShop/12.png)
 
 
